@@ -1,0 +1,31 @@
+input_dir: ViewStateProjectCoreUI/Sources/ViewStateProjectCoreUI/Resources
+output_dir: ViewStateProjectCoreUI/Sources/ViewStateProjectCoreUI/Generated/SwiftGen
+
+files:
+  inputs: Files
+  outputs:
+    templateName: structured-swift5
+    output: Files.swift
+    params:
+      publicAccess: true
+
+fonts:
+  inputs: Fonts
+  outputs:
+    templateName: swift5
+    output: Fonts.swift
+    params:
+      publicAccess: true
+
+
+xcassets:
+  - inputs: [
+      Colors.xcassets,
+      Images.xcassets
+    ]
+    outputs:
+      templateName: swift5
+      output: Assets.swift
+      params:
+        enumName: CoreUI
+        publicAccess: true

@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# add: description of a certain bug
+if ! grep -Eq '^[^#]?\b(add|fix|refactor|remove|update)\b\: \S.*$' $1; then
+
+    echo "⚠️  commit message doesn't match the pattern: \"add|fix|refactor|remove|update: description of a certain bug\""
+    exit 1
+fi
+
+# get current branch
+branchName=`git rev-parse --abbrev-ref HEAD`
+
+# Check if it's a release branch e.g. release/1.0.0
+releaseBranchRegex='^release/.+$'
+
+if [[ $branchName =~ $releaseBranchRegex ]]; then
+
+    # if this is release branch, skip check
+    exit 0
+fi

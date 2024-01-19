@@ -1,0 +1,62 @@
+#!/bin/bash
+
+# Check Licenses
+STAGED_DEPENDENCY_FILES=$(git --no-pager diff --staged --name-only --diff-filter=d | grep -e \.resolved)
+
+if [ ! -z "$STAGED_DEPENDENCY_FILES" ];
+then
+
+    sh scripts/set_settings_bundle_licenses.sh
+
+    alias gitDiffNew="for next in \$( git ls-files --others --exclude-standard | grep \.LicensePlist/* ) ; do git --no-pager diff --name-only --no-index /dev/null \$next; done;"
+    STAGED_LICENSES_FILES=$(git --no-pager diff --name-only | grep -e \.latest_result.txt -e LicensePlist.plist; gitDiffNew)
+
+    git add $STAGED_LICENSES_FILES
+fi
+
+
+# Format source code
+MESSAGES=""
+STAGED_SWIFT_FILES=$(git --no-pager diff --staged --name-only --diff-filter=d | grep \.swift)
+
+if [ ! -z "$STAGED_SWIFT_FILES" ]; then
+    
+    PRE_FORMAT_HASH=$(echo "$STAGED_SWIFT_FILES" | xargs git --no-pager diff | md5)
+
+    sh scripts/swiftformat.sh "$(echo $STAGED_SWIFT_FILES | tr ' ' ,)"
+
+    POST_FORMAT_HASH=$(echo "$STAGED_SWIFT_FILES" | xargs git --no-pager diff | md5)
+
+    if [ $PRE_FORMAT_HASH != $POST_FORMAT_HASH ]
+    then
+        MESSAGES+=$(echo "⚠️  Staged source code files modified during commit")
+    fi
+fi
+
+
+# Sort project file
+STAGED_PROJECT_FILES=$(git --no-pager diff --staged --name-only --diff-filter=d | grep \.pbxproj)
+
+if [ ! -z "$STAGED_PROJECT_FILES" ]; then
+
+    PRE_PROJECT_HASH=$(echo "$STAGED_PROJECT_FILES" | xargs git --no-pager diff | md5)
+
+    rake tidy
+
+    POST_PROJECT_HASH=$(echo "$STAGED_PROJECT_FILES" | xargs git --no-pager diff | md5)
+
+    if [ $PRE_PROJECT_HASH != $POST_PROJECT_HASH ]
+    then
+        MESSAGES+="\n"
+        MESSAGES+=$(echo "⚠️  Staged project file modified during commit")
+    fi
+fi
+
+
+# Show info message
+if [ ! -z "$MESSAGES" ]; then
+    echo $MESSAGES
+    exit 1
+else
+    exit 0
+fi

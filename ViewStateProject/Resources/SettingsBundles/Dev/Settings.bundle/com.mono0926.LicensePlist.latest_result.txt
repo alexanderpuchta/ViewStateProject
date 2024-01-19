@@ -1,0 +1,15 @@
+name: LicensePlist, nameSpecified: , owner: mono0926, version: 3.24.11, source: https://github.com/mono0926/LicensePlist
+
+name: SwiftFormat, nameSpecified: , owner: nicklockwood, version: 0.52.6, source: https://github.com/nicklockwood/SwiftFormat
+
+name: SwiftGen, nameSpecified: , owner: SwiftGen, version: 6.6.2, source: https://github.com/SwiftGen/SwiftGen
+
+name: SwiftLint, nameSpecified: , owner: realm, version: 0.53.0, source: https://github.com/realm/SwiftLint
+
+name: Factory, nameSpecified: Factory, owner: hmlongco, version: 2.3.1, source: https://github.com/hmlongco/Factory
+
+name: SFSafeSymbols, nameSpecified: SFSafeSymbols, owner: SFSafeSymbols, version: 5.2.0, source: https://github.com/SFSafeSymbols/SFSafeSymbols
+
+add-version-numbers: false
+
+LicensePlist Version: 3.24.11

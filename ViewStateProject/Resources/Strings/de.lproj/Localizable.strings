@@ -1,0 +1,11 @@
+//
+//  Copyright © 2024 alexanderpuchta.de -  All rights reserved.
+//
+
+"app_tab.title.home" = "Start";
+"app_tab.title.settings" = "Einstellungen";
+
+"home.empty.message" = "Aktuell gibt es hier nichts zu sehen. Versuch es später nochmal.";
+"home.error.message" = "Ein Fehler ist aufgetreten. Bitte versuche es später noch einmal.";
+"home.loading.message" = "Bitte warten, die benötigten Daten werden geladen.";
+"home.navigation_bar.title" = "Start";

@@ -1,0 +1,26 @@
+input_dir: ViewStateProject/Resources
+output_dir: ViewStateProject/Generated/SwiftGen
+
+files:
+  inputs: Files
+  outputs:
+    templateName: structured-swift5
+    output: Files.swift
+
+strings:
+  inputs: [
+    Strings/de.lproj/Localizable.strings,
+    Strings/de.lproj/Localizable.stringsdict,
+    Strings/NonLocalizable.strings
+  ]
+  outputs:
+    templateName: structured-swift5
+    output: Localizations.swift
+
+xcassets:
+  - inputs: [
+      Images.xcassets
+    ]
+    outputs:
+      templateName: swift5
+      output: Assets.swift

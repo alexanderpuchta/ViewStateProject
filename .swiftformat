@@ -1,0 +1,74 @@
+# list of rules will be available at:
+# https://github.com/nicklockwood/SwiftFormat/blob/main/Rules.md
+
+# swift version
+
+--swiftversion 5.9
+
+
+# exclude folders
+# f.e. auto code generated files
+
+--exclude **/External/,**/Generated/
+
+
+# formatting options
+
+## rules with specification
+
+### elseOnSameLine
+--guardelse next-line
+### fileHeader
+--header \nCopyright © {year} alexandercreates.de - All rights reserved.\n
+### indent
+--indent 4
+--indentstrings true
+### modifierOrder
+--modifierorder override,acl,setterACL,dynamic,mutators,lazy,final,required,convenience,typeMethods,owned
+### redundantSelf
+--self insert
+### semicolons
+--semicolons never
+### sortedImports
+--importgrouping testable-last
+### trailingCommas
+--commas inline
+### trailingSpace
+--trimwhitespace nonblank-lines
+### unusedArguments
+--stripunusedargs closure-only
+### wrapArguments
+--wraparguments before-first
+--wrapcollections before-first
+--wrapparameters before-first
+### wrapAttributes
+--funcattributes prev-line
+--typeattributes prev-line
+--varattributes prev-line
+
+
+# enable rules
+
+--enable                                \
+    blankLinesBetweenChainedFunctions,  \
+    blankLinesBetweenImports,           \
+    blockComments,                      \
+    docComments,                        \
+    isEmpty,                            \
+    sortSwitchCases,                    \
+    wrapConditionalBodies,              \
+    wrapEnumCases,                      \
+    wrapSwitchCases
+
+
+# disable rules
+
+--disable                               \
+    blankLinesAtStartOfScope,           \
+    consecutiveBlankLines,              \
+    numberFormatting,                   \
+# issues with publishers
+    preferKeyPath,                      \
+    redundantStaticSelf,                \
+    wrap,                               \
+    wrapMultilineStatementBraces
